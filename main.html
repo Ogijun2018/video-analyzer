@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.minimap.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.timeline.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.2/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+    <div id="demo">
+        <p id="subtitle" class="text-center text-info">&nbsp;</p>
+
+        <div id="wave-timeline"></div>
+
+        <div id="waveform">
+        </div>
+
+        <div class="row" style="margin: 30px 0">
+            <div class="col-sm-10">
+                <p>
+                    Click on a region to enter an annotation.<br />
+                    Shift-click plays a region in a loop.
+                </p>
+            </div>
+
+            <div class="col-sm-2">
+                <button class="btn btn-primary btn-block" onclick="playPause()">
+                    <span id="play">
+                        Play / Pause
+                    </span>
+                </button>
+            </div>
+
+            <div>
+              <button class="btn btn-primary" onclick="wavesurfer.setPlaybackRate(1.00)" >
+                x1.0
+              </button>
+
+              <button class="btn btn-primary" onclick="wavesurfer.setPlaybackRate(2.00)">
+                x2.0
+              </button>
+
+              <button class="btn btn-primary" onclick="Download()">Download</button>
+            </div>
+        </div>
+    </div>
+
+    <form role="form" name="edit" style="opacity: 0; transition: opacity 300ms linear; margin: 30px 0;">
+        <div class="form-group">
+            <label for="start">Start</label>
+            <input class="form-control" id="start" name="start" />
+        </div>
+
+        <div class="form-group">
+            <label for="end">End</label>
+            <input class="form-control" id="end" name="end" />
+        </div>
+
+        <div class="form-group">
+            <label for="note">Note</label>
+            <textarea id="note" class="form-control" rows="3" name="note"></textarea>
+        </div>
+
+        <button class="btn btn-success btn-block" id="submit_A" onclick="addTF(this.value)" value="A">A</button>
+        <button class="btn btn-success btn-block" id="submit_B" onclick="addTF(this.value)" value="B">B</button>
+        <button class="btn btn-success btn-block" id="submit_C" onclick="addTF(this.value)" value="C">C</button>
+        <button class="btn btn-success btn-block" id="submit_D" onclick="addTF(this.value)" value="D">D</button>
+        <center><i>or</i></center>
+        <button type="button" class="btn btn-danger btn-block" data-action="delete-region">Delete</button>
+    </form>
+    
+    <div id="sample">
+    </div>
+    </div>
+  </body>
+  <script>
+    function playPause() {
+      wavesurfer.playPause();
+    };
+
+    function addTF(str) {
+      document.edit.note.value += str;
+    }
+  </script>
+</html>
