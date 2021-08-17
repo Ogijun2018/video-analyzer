@@ -119,7 +119,14 @@ function Download() {
     const regions = JSON.parse(localStorage.regions);
     let excelData = [];
     regions.forEach((region) => {
-      excelData.push([region.data.note, region.start, region.end]);
+      if(region.data.note){
+        let data = String(region.data.note).split(',');
+        let data2 = [region.start, region.end]
+        let data3 = data.concat(data2);
+        excelData.push(data3);
+      } else {
+        excelData.push(['-','-',region.start,region.end]);
+      };
     });
 
     var write_opts = {
@@ -275,14 +282,6 @@ function editAnnotation(region) {
       }
     });
     form.style.opacity = 0;
-
-    // ここで配列に入れる
-    var element = document.getElementById('sample');
-    var new_element = document.createElement('p');
-    var count = element.childElementCount;
-    new_element.textContent = `[${count+1}]: ${form.elements.note.value} ${form.elements.start.value}s~${form.elements.end.value}s`;
-
-    element.appendChild(new_element);
   };
   form.onreset = function () {
     form.style.opacity = 0;
