@@ -30,18 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ]
   });
 
-  // wavesurfer.util
-  //   .fetchFile({
-  //     responseType: 'json',
-  //     url: 'rashomon.json'
-  //   })
-  //   .on('success', function (data) {
-  //     wavesurfer.load(
-  //       'http://www.archive.org/download/mshortworks_001_1202_librivox/msw001_03_rashomon_akutagawa_mt_64kb.mp3',
-  //       data
-  //     );
-  //   });
-
+  // ここを変える
   wavesurfer.load('1st.wav');
 
   /* Regions */
