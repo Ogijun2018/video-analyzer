@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // ここを変える
-  wavesurfer.load('1st.wav');
+  wavesurfer.load('2nd.wav');
 
   /* Regions */
 
@@ -82,6 +82,16 @@ document.addEventListener('DOMContentLoaded', function () {
     if (regionId) {
       wavesurfer.regions.list[regionId].remove();
       form.reset();
+    }
+  });
+
+  document.querySelector(
+    '[data-action="delete-region-all"]'
+  ).addEventListener('click', function () {
+    var res = confirm("Are you OK?");
+    if(res){
+      localStorage.clear();
+      location.reload();
     }
   });
 });
