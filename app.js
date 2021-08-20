@@ -94,6 +94,14 @@ document.addEventListener('DOMContentLoaded', function () {
       location.reload();
     }
   });
+
+  document.addEventListener("keydown", e => {
+    if(e.code === "Space"){
+      wavesurfer.playPause();
+    }else{
+      console.log(e.key);
+    }
+  });
 });
 
 /**
