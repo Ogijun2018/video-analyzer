@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // ここを変える
-  wavesurfer.load('2nd.wav');
+  wavesurfer.load('3rd.wav');
 
   /* Regions */
 
